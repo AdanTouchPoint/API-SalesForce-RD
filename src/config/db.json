@@ -1,0 +1,44 @@
+{
+  "development": {
+    "logging": false,
+    "dialect": "mysql",
+    "dialectOptions": {
+      "connectTimeout": 60000
+    },
+    "host": "localhost",
+    "port": 3306,
+    "username": "sandbox",
+    "password": "sandbox",
+    "database": "legalize-vaping",
+    "pool": {
+      "max": 5,
+      "idle": 30000,
+      "acquire": 60000
+    },
+    "define": {
+      "underscored": true,
+      "timestamps": false
+    }
+  },
+  "production": {
+    "logging": false,
+    "dialect": "mysql",
+    "dialectOptions": {
+      "connectTimeout": 60000
+    },
+    "host": "pfw0ltdr46khxib3.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "port": 3306,
+    "username": "t7woczt1s3w0sqdb",
+    "password": "s753u4hhqg46omqe",
+    "database": "i9mqksslgzkcb6pz",
+    "pool": {
+      "max": 5,
+      "idle": 30000,
+      "acquire": 60000
+    },
+    "define": {
+      "underscored": true,
+      "timestamps": false
+    }
+  }
+}

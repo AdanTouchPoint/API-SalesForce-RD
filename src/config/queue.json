@@ -1,0 +1,14 @@
+{
+  "development": {
+    "host": "beaver.rmq.cloudamqp.com",
+    "user ": "grxqwitr",
+    "password": "KuOm6i5bMS6ht51wsTrlNtIajhHxOMiM",
+    "vhost": "grxqwitr"
+  },
+  "production": {
+    "host": "beaver.rmq.cloudamqp.com",
+    "user ": "grxqwitr",
+    "password": "KuOm6i5bMS6ht51wsTrlNtIajhHxOMiM",
+    "vhost": "grxqwitr"
+  }
+}
