@@ -5,7 +5,7 @@ const router = Router();
 router.post('/salesForceIn', async (req, res) => {
     try {
         console.log("Hola Perro")
-        console.log(req.body)
+        console.log(req.body.new)
         const payload = req.body
 
         res.json({
