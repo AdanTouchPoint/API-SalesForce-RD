@@ -7,11 +7,11 @@ router.post('/salesForceIn', async (req, res) => {
         console.log("Hola Perro")
 
         const payload = req.body.new
-        console.log(payload.ContactId)
+        console.log(payload[0].ContactId)
         res.json({
             success: true,
             message: 'connection create',
-            data: payload.ContactId
+            data: payload
         })
     } catch (error) {
         res.status(400)
