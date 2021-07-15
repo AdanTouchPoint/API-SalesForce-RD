@@ -1,4 +1,4 @@
-// require('dotenv').config()
+require('dotenv').config()
 
 const express = require('express')
 const app = express()
@@ -30,4 +30,6 @@ app.listen(port, () => {
         console.error(error)
     })
 })
+
+//Connect to SalesForce
 
