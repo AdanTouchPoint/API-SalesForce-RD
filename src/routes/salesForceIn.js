@@ -5,13 +5,13 @@ const router = Router();
 router.post('/salesForceIn', async (req, res) => {
     try {
         console.log("Hola Perro")
-      //   console.log(req.body)
-        const payload = "hello perro"
+        console.log(req.body)
+        const payload = req.body
 
         res.json({
             success: true,
             message: 'connection create',
-             data: payload
+            data: payload
         })
     } catch (error) {
         res.status(400)
