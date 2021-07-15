@@ -5,9 +5,9 @@ const router = Router();
 router.post('/salesForceIn', async (req, res) => {
     try {
         console.log("Hola Perro")
-        console.log(req.body.new.ContactId)
-        const payload = req.body
 
+        const payload = req.body.new
+        console.log(payload)
         res.json({
             success: true,
             message: 'connection create',
