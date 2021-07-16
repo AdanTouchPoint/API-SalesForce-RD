@@ -4,12 +4,11 @@ const router = Router();
 
 router.post('/salesForceIn', async (req, res) => {
     try {
-        console.log("Hola Perro")
-        //definir el ContactId a buscar en salesForce
+       //definir el ContactId a buscar en salesForce
         const payload = req.body.new
         console.log(payload[0].ContactId)
         const contactId = payload[0].ContactId
-        //Conectar con SalesForce (loggin)
+        //Conectar con SalesForce (login)
         const conn = await new jsforce.Connection({
             // you can change loginUrl to connect to sandbox or prerelease env.
             // loginUrl : 'https://test.salesforce.com'
@@ -28,18 +27,9 @@ router.post('/salesForceIn', async (req, res) => {
             console.log("Org ID: " + userInfo.organizationId);
             // ...
         });
-        let contactEmail
+
         // buscar Contacto en salesForce por ID
-        await conn.sobject("Contact")
-            .find({Id: contactId}) // "fields" argument is omitted
-            .execute(function (err, records) {
-                if (err) {
-                    return console.error(err);
-                }
-                 contactEmail = records
-                console.log(records);
-            });
-        await console.log(contactEmail)
+
         // Conectar con RD
 
         // usar contact.Email para actualizar contacto por email en RD

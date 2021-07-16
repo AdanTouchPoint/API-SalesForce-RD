@@ -4,6 +4,7 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const cors = require('cors')
+const axios = require ('axios')
 core = require('./src/lib/core')
 const port = process.env.PORT || 8080
 app.use(cors({origin: '*'}))
@@ -31,5 +32,20 @@ app.listen(port, () => {
     })
 })
 
-//Connect to SalesForce
+//Connect to Rd
 
+
+// // Make a request for a user with a given ID
+// axios.get('https://api.rd.services/auth/dialog?client_id={client_id}&redirect_uri={redirect_uri}')
+//     .then(function (response) {
+//         // handle success
+//         console.log(response);
+//     })
+//     .catch(function (error) {
+//         // handle error
+//         console.log(error);
+//     })
+//     .then(function () {
+//         // always executed
+//     });
+//
