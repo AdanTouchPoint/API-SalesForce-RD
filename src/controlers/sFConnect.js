@@ -13,8 +13,8 @@ const  connectSF = () => {
         // Now you can get the access token and instance URL information.
         // Save them to establish connection next time.
         console.log("Connect salesForce Done!")
-        console.log(connect.accessToken);
-        console.log(connect.instanceUrl);
+        console.log(currentConnection.accessToken);
+        console.log(currentConnection.instanceUrl);
         // logged in user property
         console.log("User ID: " + userInfo.id);
         console.log("Org ID: " + userInfo.organizationId);
