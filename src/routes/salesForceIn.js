@@ -4,7 +4,7 @@ const router = Router();
 
 router.post('/salesForceIn', async (req, res) => {
     try {
-       //define the ContactId to find in salesForce
+        //define the ContactId to find in salesForce
         const payload = req.body.new
         console.log(payload[0])
         const contactId = payload[0].ContactId
@@ -12,7 +12,7 @@ router.post('/salesForceIn', async (req, res) => {
         // Find contact by Id on SalesForce
 
 
-       sFConnect.connection.sobject("Contact")
+        sFConnect.connection.sobject("Contact")
             .find({Id: contactId}) // "fields" argument is omitted
             .execute(function (err, records) {
                 if (err) {
@@ -25,14 +25,13 @@ router.post('/salesForceIn', async (req, res) => {
         // Conectar con RD
 
         // usar contact.Email para actualizar contacto por email en RD
-       // await axios.patch('https://api.rd.services/platform/contacts/email:contactEmail.Email', {
-       //   cf_etapa: payload[0].StageName
-       //  }).then((resp) => {
-       //      console.log(resp)
-       //  }).catch((error) => {
-       //      console.error(error)
-       //  })
-
+        // await axios.patch('https://api.rd.services/platform/contacts/email:contactEmail.Email', {
+        //   cf_etapa: payload[0].StageName
+        //  }).then((resp) => {
+        //      console.log(resp)
+        //  }).catch((error) => {
+        //      console.error(error)
+        //  })
 
 
 //
