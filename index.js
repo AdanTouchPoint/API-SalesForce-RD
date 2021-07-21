@@ -4,7 +4,9 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const cors = require('cors')
-const axios = require ('axios')
+const axios = require('axios')
+rdConnect = require('./src/controlers/rdConnection')
+const conn = require('./src/controlers/sFConnect')
 core = require('./src/lib/core')
 const port = process.env.PORT || 8080
 app.use(cors({origin: '*'}))
@@ -33,19 +35,17 @@ app.listen(port, () => {
 })
 
 //Connect to Rd
+const logger = async () => {
+    try {
+        await rdConnect.getToken()
+        await conn.connectSF()
+    } catch (error) {
+        console.error(error)
+    }
+}
 
-
-// // Make a request for a user with a given ID
-// axios.get('https://api.rd.services/auth/dialog?client_id={client_id}&redirect_uri={redirect_uri}')
-//     .then(function (response) {
-//         // handle success
-//         console.log(response);
-//     })
-//     .catch(function (error) {
-//         // handle error
-//         console.log(error);
-//     })
-//     .then(function () {
-//         // always executed
-//     });
-//
+logger().then(() => {
+    console.log('services connected')
+}).catch((error) => {
+    console.error(error)
+})

@@ -1,39 +1,44 @@
 const {Router} = require('express');
-const jsforce = require('jsforce');
 const router = Router();
-
+const jsforce = require('jsforce');
 router.post('/salesForceIn', async (req, res) => {
     try {
-       //definir el ContactId a buscar en salesForce
+       //define the ContactId to find in salesForce
         const payload = req.body.new
-        console.log(payload[0].ContactId)
+        console.log(payload[0])
         const contactId = payload[0].ContactId
-        //Conectar con SalesForce (login)
-        const conn = await new jsforce.Connection({
+        //Connect to SalesForce (login)
+
+
+        // Find contact by Id on SalesForce
+        let connect =  new jsforce.Connection({
             // you can change loginUrl to connect to sandbox or prerelease env.
             // loginUrl : 'https://test.salesforce.com'
         });
-        await conn.login(process.env.SF_USERNAME, process.env.SF_PASSWORD + process.env.SF_TOKEN, function (err, userInfo) {
-            if (err) {
-                return console.error(err);
-            }
-            // Now you can get the access token and instance URL information.
-            // Save them to establish connection next time.
-            console.log("Connect salesForce Done!")
-            console.log(conn.accessToken);
-            console.log(conn.instanceUrl);
-            // logged in user property
-            console.log("User ID: " + userInfo.id);
-            console.log("Org ID: " + userInfo.organizationId);
-            // ...
-        });
-
-        // buscar Contacto en salesForce por ID
-
+        await connect.sobject("Contact")
+            .find({Id: contactId}) // "fields" argument is omitted
+            .execute(function (err, records) {
+                if (err) {
+                    return console.error(err);
+                }
+                contactEmail = records
+                console.log(records);
+            });
+        await console.log(contactEmail)
         // Conectar con RD
 
         // usar contact.Email para actualizar contacto por email en RD
+       // await axios.patch('https://api.rd.services/platform/contacts/email:contactEmail.Email', {
+       //   cf_etapa: payload[0].StageName
+       //  }).then((resp) => {
+       //      console.log(resp)
+       //  }).catch((error) => {
+       //      console.error(error)
+       //  })
 
+
+
+//
         res.json({
             success: true,
             message: 'connection create',
