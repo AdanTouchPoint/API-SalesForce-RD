@@ -1,4 +1,4 @@
-const jsforce = require('jsforce');
+const sFConnect = require('../controlers/sFConnect')
 const {Router} = require('express');
 const router = Router();
 
@@ -10,11 +10,9 @@ router.post('/salesForceIn', async (req, res) => {
         const contactId = payload[0].ContactId
         //Connect to SalesForce (login)
         // Find contact by Id on SalesForce
-        let connect =  new jsforce.Connection({
-            // you can change loginUrl to connect to sandbox or prerelease env.
-             loginUrl : 'https://touchpoint-dev-ed.my.salesforce.com'
-        });
-        await connect.sobject("Contact")
+
+
+       sFConnect.connection.sobject("Contact")
             .find({Id: contactId}) // "fields" argument is omitted
             .execute(function (err, records) {
                 if (err) {

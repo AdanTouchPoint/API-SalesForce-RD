@@ -38,7 +38,7 @@ app.listen(port, () => {
 const logger = async () => {
     try {
         await rdConnect.getToken()
-        await conn.connectSF()
+        // await conn.connectSF()
     } catch (error) {
         console.error(error)
     }

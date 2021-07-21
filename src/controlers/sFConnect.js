@@ -1,12 +1,12 @@
 const jsforce = require('jsforce');
 
-
+let currentConnection
 const  connectSF = () => {
-   let connect =  new jsforce.Connection({
+     currentConnection =  new jsforce.Connection({
         // you can change loginUrl to connect to sandbox or prerelease env.
         // loginUrl : 'https://test.salesforce.com'
     });
-     connect.login(process.env.SF_USERNAME, process.env.SF_PASSWORD + process.env.SF_TOKEN, function (err, userInfo) {
+    currentConnection.login(process.env.SF_USERNAME, process.env.SF_PASSWORD + process.env.SF_TOKEN, function (err, userInfo) {
         if (err) {
             return console.error(err);
         }
@@ -22,8 +22,11 @@ const  connectSF = () => {
     });
  }
 
-const findById = async () => {
-
+const connection = async () => {
+    if(!currentConnection) {
+        connectSF();
+    }
+    return currentConnection
 }
 
-module.exports = {connectSF}
+module.exports = {connection}
