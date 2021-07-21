@@ -22,7 +22,7 @@ const  connectSF = () => {
     });
  }
 
-const connection = async () => {
+const connection = () => {
     if(!currentConnection) {
         connectSF();
     }

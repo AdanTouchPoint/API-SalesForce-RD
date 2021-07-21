@@ -4,15 +4,14 @@ const router = Router();
 
 router.post('/salesForceIn', async (req, res) => {
     try {
+        let contactEmail
         //define the ContactId to find in salesForce
         const payload = req.body.new
         console.log(payload[0])
         const contactId = payload[0].ContactId
         //Connect to SalesForce (login)
         // Find contact by Id on SalesForce
-
-
-        sFConnect.connection.sobject("Contact")
+       await sFConnect.connection.sobject("Contact")
             .find({Id: contactId}) // "fields" argument is omitted
             .execute(function (err, records) {
                 if (err) {
