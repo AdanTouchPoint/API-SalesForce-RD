@@ -47,7 +47,6 @@ router.post('/salesForceIn', async (req, res) => {
 
      const getToken = await rdConnect.getToken()
 
-
      await console.log(getToken)
 
         // usar contact.Email para actualizar contacto por email en RD
