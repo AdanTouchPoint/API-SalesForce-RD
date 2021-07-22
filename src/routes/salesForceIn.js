@@ -37,9 +37,9 @@ router.post('/salesForceIn', async (req, res) => {
                     return console.error(err);
                 }
                 contactEmail = records
-                console.log(records);
+                console.log(records.email);
             });
-        await console.log(contactEmail)
+        await console.log(contactEmail[0].Email)
         // Conectar con RD
 
         // usar contact.Email para actualizar contacto por email en RD
