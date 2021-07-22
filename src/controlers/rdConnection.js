@@ -21,6 +21,7 @@ const refreshToken = () => {
         "refresh_token": process.env.REFRESH_TOKEN
     }).then((resp) => {
         console.log(resp)
+        process.env.ACCESS_TOKEN = resp.data.access_token
     }).catch((error) => {
         console.error(error)
     })
