@@ -44,11 +44,11 @@ router.post('/salesForceIn', async (req, res) => {
             });
          const mail = contactEmail[0].Email
         console.log(mail)
-        rdConnect.getToken().then(resp => {
-            console.log(resp.data.access_token)
-            token = resp.data.access_token
+       await rdConnect.getToken().then(resp => {
+            console.log(resp.access_token)
+            token = resp.access_token
         })
-        console.log(token)
+     await console.log(token)
 
         // usar contact.Email para actualizar contacto por email en RD
        await axios.patch(`https://api.rd.services/platform/contacts/email:${mail}`, {
