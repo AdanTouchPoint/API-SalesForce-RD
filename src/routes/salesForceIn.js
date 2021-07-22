@@ -1,5 +1,6 @@
 const jsforce = require('jsforce');
 const {Router} = require('express');
+axios = require('axios');
 const router = Router();
 
 router.post('/salesForceIn', async (req, res) => {
@@ -39,8 +40,8 @@ router.post('/salesForceIn', async (req, res) => {
                 contactEmail = records
                 console.log(records.email);
             });
-         const mail = await  contactEmail[0].Email
-
+         const mail = contactEmail[0].Email
+        console.log(mail)
         // usar contact.Email para actualizar contacto por email en RD
        await axios.patch(`https://api.rd.services/platform/contacts/email:${mail}`, {
          cf_etapa: payload[0].StageName
