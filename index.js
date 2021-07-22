@@ -1,14 +1,12 @@
 // require('dotenv').config()
 
 const express = require('express')
-const app = express()
-const path = require('path')
-const cors = require('cors')
-const axios = require('axios')
+app = express()
+cors = require('cors')
 rdConnect = require('./src/controlers/rdConnection')
-const connectSF = require('./src/controlers/sFConnect')
+connectSF = require('./src/controlers/sFConnect')
 core = require('./src/lib/core')
-const port = process.env.PORT || 8080
+ port = process.env.PORT || 8080
 app.use(cors({origin: '*'}))
 app.use(express.urlencoded({extended: false}))
 app.use(express.json());
@@ -38,7 +36,7 @@ app.listen(port, () => {
 const logger = async () => {
     try {
         await rdConnect.getToken()
-        await connectSF.connection()
+        // await connectSF.connection()
     } catch (error) {
         console.error(error)
     }
