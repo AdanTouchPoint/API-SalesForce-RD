@@ -6,7 +6,7 @@ const router = Router();
 
 router.post('/salesForceIn', async (req, res) => {
     try {
-       //define the ContactId to find in salesForce
+        //define the ContactId to find in salesForce
         let token
         let conn
         let contactEmail
@@ -42,25 +42,25 @@ router.post('/salesForceIn', async (req, res) => {
                 contactEmail = records
 
             });
-         const mail = contactEmail[0].Email
+        const mail = contactEmail[0].Email
         console.log(mail)
 
-     const getToken = await rdConnect.getToken()
+        const getToken = rdConnect.getToken()
 
-     await console.log(getToken)
+        await console.log(getToken)
 
         // usar contact.Email para actualizar contacto por email en RD
-       // await axios.patch(`https://api.rd.services/platform/contacts/email:${mail}`, {
-       //   cf_etapa: payload[0].StageName
-       //  },{
-       //         headers: {
-       //             'Authorization': `${token}`
-       //         }
-       //  }).then((resp) => {
-       //      console.log(resp)
-       //  }).catch((error) => {
-       //      console.error(error)
-       //  })
+        // await axios.patch(`https://api.rd.services/platform/contacts/email:${mail}`, {
+        //   cf_etapa: payload[0].StageName
+        //  },{
+        //         headers: {
+        //             'Authorization': `${token}`
+        //         }
+        //  }).then((resp) => {
+        //      console.log(resp)
+        //  }).catch((error) => {
+        //      console.error(error)
+        //  })
 //
         res.json({
             success: true,
