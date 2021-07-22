@@ -7,7 +7,7 @@ const router = Router();
 router.post('/salesForceIn', async (req, res) => {
     try {
         //define the ContactId to find in salesForce
-        let token
+
         let conn
         let contactEmail
         const payload = req.body.new
@@ -59,7 +59,7 @@ router.post('/salesForceIn', async (req, res) => {
                         cf_etapa: payload[0].StageName
                     }, {
                         headers: {
-                            'Authorization': `${token}`
+                            'Authorization': `${access}`
                         }
                     })
                         .then((resp) => {
