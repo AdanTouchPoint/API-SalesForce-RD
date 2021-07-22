@@ -39,17 +39,16 @@ router.post('/salesForceIn', async (req, res) => {
                 contactEmail = records
                 console.log(records.email);
             });
-        await console.log(contactEmail[0].Email)
-        // Conectar con RD
+         const mail = await  contactEmail[0].Email
 
         // usar contact.Email para actualizar contacto por email en RD
-       // await axios.patch('https://api.rd.services/platform/contacts/email:contactEmail.Email', {
-       //   cf_etapa: payload[0].StageName
-       //  }).then((resp) => {
-       //      console.log(resp)
-       //  }).catch((error) => {
-       //      console.error(error)
-       //  })
+       await axios.patch(`https://api.rd.services/platform/contacts/email:${mail}`, {
+         cf_etapa: payload[0].StageName
+        }).then((resp) => {
+            console.log(resp)
+        }).catch((error) => {
+            console.error(error)
+        })
 //
         res.json({
             success: true,
