@@ -29,15 +29,15 @@ router.post('/salesForceIn', async (req, res) => {
                 // ...
             });
         }
-        const connection = () => {
-            if(!currentConnection) {
-                connectSF();
+        const connection = async () => {
+         if(!currentConnection) {
+               await connectSF();
             }
-            return currentConnection
+          return currentConnection
         }
         connection().then( response => {
             console.log(response)
-            currentConnection.sobject("Contact")
+            connection.sobject("Contact")
                 .find({Id: contactId}) // "fields" argument is omitted
                 .execute(function (err, records) {
                     if (err) {
