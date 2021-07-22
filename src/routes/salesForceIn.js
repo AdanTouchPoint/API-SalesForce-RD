@@ -45,17 +45,18 @@ router.post('/salesForceIn', async (req, res) => {
         const mail = contactEmail[0].Email
         console.log(mail)
 
-        rdConnect.getToken().then((resp) => {
-            console.log(resp)
-        }).catch(() => {
-            rdConnect.refreshToken().then((resp) => {
-               console.log('Here')
+        rdConnect.getToken()
+            .then((resp) => {
                 console.log(resp)
-            }).catch((error) => {
+            }).catch(() => {
+            rdConnect.refreshToken()
+                .then((resp) => {
+                    console.log('Here')
+                    console.log(resp.data.access_token)
+                }).catch((error) => {
                 console.error(error)
             })
         })
-
 
 
         // usar contact.Email para actualizar contacto por email en RD
