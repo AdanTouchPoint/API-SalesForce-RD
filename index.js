@@ -33,17 +33,17 @@ app.listen(port, () => {
 })
 
 //Connect to Rd
-const logger = async () => {
-    try {
-        await rdConnect.getToken()
-        // await connectSF.connection()
-    } catch (error) {
-        console.error(error)
-    }
-}
-
-logger().then(() => {
-    console.log('services connected')
-}).catch((error) => {
-    console.error(error)
-})
+// const logger = async () => {
+//     try {
+//         await rdConnect.getToken()
+//         // await connectSF.connection()
+//     } catch (error) {
+//         console.error(error)
+//     }
+// }
+//
+// logger().then(() => {
+//     console.log('services connected')
+// }).catch((error) => {
+//     console.error(error)
+// })

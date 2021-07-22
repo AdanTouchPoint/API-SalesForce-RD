@@ -1,11 +1,13 @@
 const jsforce = require('jsforce');
 const {Router} = require('express');
+rdConnect = require('../controlers/rdConnection')
 axios = require('axios');
 const router = Router();
 
 router.post('/salesForceIn', async (req, res) => {
     try {
        //define the ContactId to find in salesForce
+        let token
         let conn
         let contactEmail
         const payload = req.body.new
@@ -42,12 +44,18 @@ router.post('/salesForceIn', async (req, res) => {
             });
          const mail = contactEmail[0].Email
         console.log(mail)
+        rdConnect.getToken().then(resp => {
+            console.log(resp.data.access_token)
+            token = resp.data.access_token
+        })
+        console.log(token)
+
         // usar contact.Email para actualizar contacto por email en RD
        await axios.patch(`https://api.rd.services/platform/contacts/email:${mail}`, {
          cf_etapa: payload[0].StageName
         },{
                headers: {
-                   'Authorization': process.env.ACCESS_TOKEN
+                   'Authorization': token
                }
         }).then((resp) => {
             console.log(resp)
