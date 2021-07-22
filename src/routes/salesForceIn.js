@@ -53,13 +53,12 @@ router.post('/salesForceIn', async (req, res) => {
                 .then((resp) => {
                     console.log('Here')
                     console.log(resp.data.access_token)
-
-                    let access = String(resp.data.access_token)
+                    let access = String(resp.data.access_token).replace(/(\t\n|\n|\t)/gm, "")
                     axios.patch(`https://api.rd.services/platform/contacts/email:${mail}`, {
                        "cf_etapa": String(payload[0].StageName)
                     }, {
                         headers: {
-                            "Authorization": `${access}`
+                            "Authorization": `Bearer ${access}`
                         }
                     })
                         .then((resp) => {
