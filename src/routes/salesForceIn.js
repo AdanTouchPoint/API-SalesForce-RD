@@ -40,13 +40,13 @@ router.post('/salesForceIn', async (req, res) => {
                     return console.error(err);
                 }
                 contactEmail = records
-                console.log(records.email);
+
             });
          const mail = contactEmail[0].Email
         console.log(mail)
        await rdConnect.getToken().then(resp => {
-            console.log(resp.access_token)
-            token = resp.access_token
+            console.log(resp)
+            token = resp
         })
      await console.log(token)
 
@@ -55,7 +55,7 @@ router.post('/salesForceIn', async (req, res) => {
          cf_etapa: payload[0].StageName
         },{
                headers: {
-                   'Authorization': token
+                   'Authorization': `${token}`
                }
         }).then((resp) => {
             console.log(resp)
