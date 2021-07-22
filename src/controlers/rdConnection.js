@@ -20,8 +20,7 @@ const refreshToken = () => {
         "client_secret": process.env.CLIENT_SECRET,
         "refresh_token": process.env.REFRESH_TOKEN
     }).then((resp) => {
-        //console.log(resp.data)
-
+        console.log(resp.data)
     }).catch((error) => {
         console.error(error)
     })
