@@ -7,6 +7,7 @@ const  getToken = async() => {
         "code": process.env.CODE
     }).then((resp) => {
         console.log(resp.data)
+        process.env.ACCESS_TOKEN = resp.data.access_token
     }).catch((error) => {
         refreshToken()
 

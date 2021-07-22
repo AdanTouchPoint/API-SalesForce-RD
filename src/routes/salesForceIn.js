@@ -45,6 +45,10 @@ router.post('/salesForceIn', async (req, res) => {
         // usar contact.Email para actualizar contacto por email en RD
        await axios.patch(`https://api.rd.services/platform/contacts/email:${mail}`, {
          cf_etapa: payload[0].StageName
+        },{
+               headers: {
+                   'Authorization': process.env.ACCESS_TOKEN
+               }
         }).then((resp) => {
             console.log(resp)
         }).catch((error) => {
