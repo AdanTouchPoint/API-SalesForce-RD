@@ -7,7 +7,6 @@ const router = Router();
 router.post('/salesForceIn', async (req, res) => {
     try {
         //define the ContactId to find in salesForce
-
         let conn
         let contactEmail
         const payload = req.body.new
@@ -48,15 +47,15 @@ router.post('/salesForceIn', async (req, res) => {
         rdConnect.getToken()
             .then((resp) => {
                 console.log(resp)
-            }).catch(() => {
+            })
+            .catch(() => {
             rdConnect.refreshToken()
                 .then((resp) => {
                     console.log('Here')
                     console.log(resp.data.access_token)
-                    let access = String(resp.data.access_token.replace(/(\r\n|\n|\r)/gm, ""))
-
+                    let access = String(resp.data.access_token)
                     axios.patch(`https://api.rd.services/platform/contacts/email:${mail}`, {
-                       "cf_etapa": String(payload[0].StageName)
+                        "cf_etapa": String(payload[0].StageName)
                     }, {
                         headers: {
                             "Authorization": `Bearer ${access}`,
@@ -64,25 +63,30 @@ router.post('/salesForceIn', async (req, res) => {
                         }
                     })
                         .then((resp) => {
-                            console.log(resp)
+                            res.json({
+                                success: true,
+                                message: 'connection create',
+                                data: contactId
+                            })
                         })
                         .catch((error) => {
                             console.error(error)
                         })
-                }).catch((error) => {
-                console.error(error)
-            })
+                })
+            //     .catch((error) => {
+            //     console.error(error)
+            // })
         })
 
 
         // usar contact.Email para actualizar contacto por email en RD
 
 //
-        res.json({
-            success: true,
-            message: 'connection create',
-            data: contactId
-        })
+//         res.json({
+//             success: true,
+//             message: 'connection create',
+//             data: contactId
+//         })
     } catch (error) {
         res.status(400)
         res.json({
