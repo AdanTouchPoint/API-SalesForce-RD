@@ -11,16 +11,19 @@ router.post('/salesForceIn', async (req, res) => {
         const contactId = payload[0].ContactId
         //Connect to SalesForce (login)
         // Find contact by Id on SalesForce
-       await sFConnect.connection.sobject("Contact")
-            .find({Id: contactId}) // "fields" argument is omitted
-            .execute(function (err, records) {
-                if (err) {
-                    return console.error(err);
-                }
-                contactEmail = records
-                console.log(records);
-            });
-        await console.log(contactEmail)
+       await sFConnect.connection().then(conn => {
+          conn.sobject("Contact")
+               .find({Id: contactId}) // "fields" argument is omitted
+               .execute(function (err, records) {
+                   if (err) {
+                       return console.error(err);
+                   }
+                   contactEmail = records
+                   console.log(records);
+               });
+            console.log(contactEmail)
+
+       })
         // Conectar con RD
 
         // usar contact.Email para actualizar contacto por email en RD
